@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <!-- added Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <link rel="stylesheet" href="./asset/style.css">
+    <title>Weather Forecast</title>
+</head>
+
+<body>
+    <header class='header-style'>
+        <h1>Weather Dashboard</h1>
+    </header>
+    <main class='container-fluid'>
+        <div class='row'>
+            <div class='card col-12 col-md-4 col-lg-3 mb-3' id="sidebar">
+                <h2 class='mb-3'>Search for a City</h2>
+                <div class='sidebar-body'>
+                    <input type="text" class="form-control mb-3" placeholder="City" id="cityName">
+                    <button type="button" class="btn btn-primary btn-lg btn-block mb-3" id='searchBtn'>Search</button>
+                </div>
+                <form id='listCityBtn'></form>
+            </div>
+            <section class='col-12 col-md-9'>
+                <div class='row mr-0'>
+                    <div class='border border-dark m-3 rounded hide bigPart'>
+                        <h3 id='name'></h3>
+                        <div class='weathericon'>
+                            <img src='./icons/unknown.png' />
+                        </div>
+                        <p>Temperature: <span id='temperature'></span> ℉</p>
+                        <p>Humidity: <span id='humidity'></span></p>
+                        <p>Wind-speed: <span id='wind-speed'></span></p>
+                        <p>UV index: <span id='uvColor'></span></p>
+                    </div>
+                </div>
+
+                <div class='row hide'>
+                    <div class='col-12'>
+                        <h4>5 Day Forecast</h4>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-4'></div>
+                    <div class='col-md-4'></div>
+                    <div class='col-md-4'></div>
+                    <div class='col-md-4'></div>
+                    <div class='col-md-4'></div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <!-- add jQuey -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src='./asset/script.js'></script>
+</body>
+
+</html>
