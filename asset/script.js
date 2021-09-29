@@ -1,5 +1,4 @@
-var APIKey = 'a0aca8a89948154a4182dcecc780b513';
-//'f4915048342372788a14fb7a2a82d0a6'
+var APIKey = '387641054725543e8ae9cd67a7569bc5';
 var cityName = document.getElementById('cityName');
 var searchBtn = document.querySelector('#searchBtn');
 var weatherIcon = document.querySelector('.weathericon');
