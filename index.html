@@ -20,17 +20,19 @@
     </header>
     <main class='container-fluid'>
         <div class='row'>
-            <div class='card col-12 col-md-4 col-lg-3 mb-3' id="sidebar">
-                <h2 class='mb-3'>Search for a City</h2>
+            <div class='bg-info text-white m-2 rounded col-lg-3' id="sidebar">
+                <h2 class='pt-3 mb-3'>Search for a City:</h2>
                 <div class='sidebar-body'>
                     <input type="text" class="form-control mb-3" placeholder="City" id="cityName">
-                    <button type="button" class="btn btn-primary btn-lg btn-block mb-3" id='searchBtn'>Search</button>
+                    <button type="button" class="btn btn-light btn-lg btn-block mb-3" id='searchBtn'>Search</button>
                 </div>
-                <form id='listCityBtn'></form>
+                <ul id='previousSearchBtn' class="listCities btn-group-vertical">
+
+                </ul>
             </div>
-            <section class='col-12 col-md-9'>
-                <div class='row mr-0'>
-                    <div class='border border-dark m-3 rounded hide bigPart'>
+            <section class='pt-2 col-lg-8'>
+                <div class='row mr-0 border border-info pt-3 rounded bigPart'>
+                    <div class='m-3 col-lg-11'>
                         <h3 id='name'></h3>
                         <div class='weathericon'>
                             <img src='./icons/unknown.png' />
@@ -41,18 +43,45 @@
                         <p>UV index: <span id='uvColor'></span></p>
                     </div>
                 </div>
-
-                <div class='row hide'>
-                    <div class='col-12'>
-                        <h4>5 Day Forecast</h4>
+                <div class="pt-3 col-sm-12" id="future-weather">
+                    <h3>5-Day Forecast:</h3>
+                    <div class="row text-light">
+                        <div class="col-sm-2 bg-info forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
+                            <p id="fDate0" class='text-center'></p>
+                            <p id="fImg0"></p>
+                            <p>Temp: <span id="fTemp0"></span> ℉</p>
+                            <p>Wind: <span id="fWind0"></span> MPH</p>
+                            <p>Humidity: <span id="fHumidity0"></span> %</p>
+                        </div>
+                        <div class="col-sm-2 bg-info forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
+                            <p id="fDate1" class='text-center'></p>
+                            <p id="fImg1"></p>
+                            <p>Temp: <span id="fTemp1"></span> ℉</p>
+                            <p>Wind: <span id="fWind1"></span> MPH</p>
+                            <p>Humidity: <span id="fHumidity1"></span> %</p>
+                        </div>
+                        <div class="col-sm-2 bg-info forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
+                            <p id="fDate2" class='text-center'></p>
+                            <p id="fImg2"></p>
+                            <p>Temp: <span id="fTemp2"></span> ℉</p>
+                            <p>Wind: <span id="fWind2"></span> MPH</p>
+                            <p>Humidity: <span id="fHumidity2"></span> %</p>
+                        </div>
+                        <div class="col-sm-2 bg-info forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
+                            <p id="fDate3" class='text-center'></p>
+                            <p id="fImg3"></p>
+                            <p>Temp: <span id="fTemp3"></span> ℉</p>
+                            <p>Wind: <span id="fWind3"></span> MPH</p>
+                            <p>Humidity: <span id="fHumidity3"></span> %</p>
+                        </div>
+                        <div class="col-sm-2 bg-info forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
+                            <p id="fDate4" class='text-center'></p>
+                            <p id="fImg4"></p>
+                            <p>Temp: <span id="fTemp4"></span> ℉</p>
+                            <p>Wind: <span id="fWind4"></span> MPH</p>
+                            <p>Humidity: <span id="fHumidity4"></span> %</p>
+                        </div>
                     </div>
-                </div>
-                <div class='row'>
-                    <div class='col-md-4'></div>
-                    <div class='col-md-4'></div>
-                    <div class='col-md-4'></div>
-                    <div class='col-md-4'></div>
-                    <div class='col-md-4'></div>
                 </div>
             </section>
         </div>
