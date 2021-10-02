@@ -1,4 +1,6 @@
 # roseluu-homework6-ServerSideAPIsWeatherDashboard
+## Deployed at https://roseluu.github.io/roseluu-homework6-ServerSideAPIsWeatherDashboard/
+
 ### weather dashboard
 1. This page will show city weather according to user search
 <img width="1396" alt="desktop" src="https://user-images.githubusercontent.com/89173968/135196230-f350990a-f552-470d-b016-c3ab276ea111.png">
