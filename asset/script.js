@@ -11,9 +11,9 @@ var searchHistory = [];
 var city = '';
 
 
-function showWeather(city) {
+function showWeather() {
     var city = cityName.value.trim();
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
 
     fetch(queryURL)
         .then(function (respond) {
@@ -33,6 +33,7 @@ function showWeather(city) {
             humidityEl.innerHTML = data.main.humidity;
             var weatherIconId = data.weather[0].icon;
             weatherIcon.innerHTML = `<img src='./icons/${weatherIconId}.png' />`;
+            saveCity();
             function getUVIndex() {
                 var lat = data.coord.lat;
                 var lon = data.coord.lon;
@@ -70,7 +71,7 @@ function showWeather(city) {
                     localStorage.setItem('search', JSON.stringify(searchHistory));
                 }
             }
-            saveCity();
+
         });
 }
 
@@ -108,30 +109,30 @@ searchBtn.addEventListener('click', showWeather);
 
 //save search hitory into local storage
 var citySearch = document.getElementById('previousSearchBtn');
-var li = document.createElement('li');
-// citySearch.appendChild(li);
+// var li = document.createElement('li');
 function saveCity() {
     var searchHistory = JSON.parse(localStorage.getItem("search"));
     if (searchHistory !== null) {
         JSON.parse(localStorage.getItem("search"));
         console.log(searchHistory)
         for (var i = 0; i < searchHistory.length; i++) {
-            // var li = document.createElement('li');
+            var li = document.createElement('li');
             li.setAttribute('type', 'button');
-            li.setAttribute('class', 'form-control d-block bg-white');
+            li.setAttribute('class', 'clickable form-control d-block bg-white');
             li.textContent = searchHistory[i];
             console.log(li.textContent);
+            citySearch.append(li);
         }
-        citySearch.append(li);
     }
 }
-function goBackHistory(event) {
-    var li = event.target;
-    if (event.target.matches('li')) {
-        city = li.textContent.trim();
-        showWeather(city);
-    }
-}
-li.addEventListener('click', goBackHistory);
+// // function goBackHistory(event) {
+// //     var li = event.target;
+// //     if (event.target.matches('li')) {
+// //         city = li.textContent.trim();
+// //         showWeather(city);
+// //     }
+
+
+// $('.clickable').click(goBackHistory);
 
 
