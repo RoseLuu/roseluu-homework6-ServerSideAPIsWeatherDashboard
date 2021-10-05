@@ -11,8 +11,8 @@ var searchHistory = [];
 var city = '';
 
 
-function showWeather() {
-    var city = cityName.value.trim();
+function showWeather(city) {
+    // var city = cityName.value.trim();
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
 
     fetch(queryURL)
@@ -33,7 +33,6 @@ function showWeather() {
             humidityEl.innerHTML = data.main.humidity;
             var weatherIconId = data.weather[0].icon;
             weatherIcon.innerHTML = `<img src='./icons/${weatherIconId}.png' />`;
-            saveCity();
             function getUVIndex() {
                 var lat = data.coord.lat;
                 var lon = data.coord.lon;
@@ -57,6 +56,35 @@ function showWeather() {
                         }
                     })
             }
+            //five day forecast weather
+            function forecastFiveDay() {
+                //var city = cityName.value.trim();
+                var forecastUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + APIKey;
+                // var forecastEl = document.querySelector('.forecastWeather');
+
+                fetch(forecastUrl)
+                    .then(function (forecast) {
+                        return forecast.json()
+                    })
+                    .then(function (forecastdata) {
+                        console.log(forecastdata);
+                        for (var i = 0; i < 5; i++) {
+                            const forecastIndex = ((i + 1) * 8) - 1;
+                            var fDate = new Date((forecastdata.list[forecastIndex].dt) * 1000);
+                            var fDateEl = ('0' + (fDate.getMonth() + 1)).slice(-2) + '/' + ('0' + fDate.getDate()).slice(-2) + '/' + fDate.getFullYear();
+                            var forecastIconId = forecastdata.list[forecastIndex].weather[0].icon;
+                            var fTempEl = Math.floor((forecastdata.list[forecastIndex].main.temp - 273) * (9 / 5) + 32);
+                            var fWindEl = Math.floor((forecastdata.list[forecastIndex].wind.speed) * 2.237)
+                            var fHumidityEl = forecastdata.list[forecastIndex].main.humidity;
+                            $('#fDate' + i).html(fDateEl);
+                            $('#fImg' + i).html(`<img src='./icons/${forecastIconId}.png' />`);
+                            $('#fTemp' + i).html(fTempEl);
+                            $('#fWind' + i).html(fWindEl);
+                            $('#fHumidity' + i).html(fHumidityEl);
+                        }
+                    });
+
+            }
             getUVIndex();
             forecastFiveDay();
             if (data.cod == 200) {
@@ -75,37 +103,12 @@ function showWeather() {
         });
 }
 
-//five day forecast weather
-function forecastFiveDay() {
-    var city = cityName.value.trim();
-    var forecastUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + APIKey;
-    // var forecastEl = document.querySelector('.forecastWeather');
-
-    fetch(forecastUrl)
-        .then(function (forecast) {
-            return forecast.json()
-        })
-        .then(function (forecastdata) {
-            console.log(forecastdata);
-            for (var i = 0; i < 5; i++) {
-                const forecastIndex = ((i + 1) * 8) - 1;
-                var fDate = new Date((forecastdata.list[forecastIndex].dt) * 1000);
-                var fDateEl = ('0' + (fDate.getMonth() + 1)).slice(-2) + '/' + ('0' + fDate.getDate()).slice(-2) + '/' + fDate.getFullYear();
-                var forecastIconId = forecastdata.list[forecastIndex].weather[0].icon;
-                var fTempEl = Math.floor((forecastdata.list[forecastIndex].main.temp - 273) * (9 / 5) + 32);
-                var fWindEl = Math.floor((forecastdata.list[forecastIndex].wind.speed) * 2.237)
-                var fHumidityEl = forecastdata.list[forecastIndex].main.humidity;
-                $('#fDate' + i).html(fDateEl);
-                $('#fImg' + i).html(`<img src='./icons/${forecastIconId}.png' />`);
-                $('#fTemp' + i).html(fTempEl);
-                $('#fWind' + i).html(fWindEl);
-                $('#fHumidity' + i).html(fHumidityEl);
-            }
-        });
-
-}
-
-searchBtn.addEventListener('click', showWeather);
+searchBtn.addEventListener('click', function () {
+    var cityValue = cityName.value;
+    console.log(cityValue)
+    showWeather(cityValue);
+    saveCity(cityValue);
+});
 
 //save search hitory into local storage
 var citySearch = document.getElementById('previousSearchBtn');
@@ -125,14 +128,16 @@ function saveCity() {
         }
     }
 }
-// // function goBackHistory(event) {
-// //     var li = event.target;
-// //     if (event.target.matches('li')) {
-// //         city = li.textContent.trim();
-// //         showWeather(city);
-// //     }
-
-
-// $('.clickable').click(goBackHistory);
+saveCity()
+function goBackHistory(event) {
+    event.preventDefault();
+    console.log(event.target);
+    var li = event.target;
+    if (event.target.matches('li')) {
+        city = li.textContent.trim();
+        showWeather(city);
+    }
+}
+$('.clickable').click(goBackHistory);
 
 
